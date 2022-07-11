@@ -17,8 +17,44 @@ header {
   width: 100%;
 }
 
+.calculator-frame {
+  background-color: #d2691e;
+  padding: 4px;
+} 
+
+.conponent-wrapper {
+  width: 100%;
+}
+
+.calculator-display {
+  width: 100%;
+  background-color: azure;
+}
+
+.button-sections-wrapper, .mid-right-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.left-section, .right-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.mid-section {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
 p, h1 {
   color: azure;
+}
+
+p {
+  height: 19px;
+  text-align: end;
+  margin: 0;
+  color: #000;
 }
 
 h1 {
@@ -30,4 +66,8 @@ h1 {
 a {
   text-decoration: none;
   color: #90aaff;
+}
+
+button {
+  width: 27px;
 }

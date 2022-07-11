@@ -40,4 +40,3 @@ Add negative numbers
   tested but failed regex: /(?<=[\s-+*/%^])-?\d+\*(?<=[-+*/%^])-?\d+/
 
 Add parentheses
-  
