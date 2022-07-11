@@ -47,7 +47,7 @@ function decimalPress() {
 
 function equalPress() {
   currentExpression += /\d/.test(currentNumbers) ? currentNumbers : "0";
-  currentNumbers = Math.abs(+evaluateExpression(currentExpression)).toString();
+  currentNumbers = Math.abs(+evaluateExpression(currentExpression));
   currentExpression = "";
 }
 
