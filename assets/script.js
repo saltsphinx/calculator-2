@@ -1,4 +1,55 @@
-const ORDER = ["(", "^", "*", "/", "%", "+", "-"];
+const ORDER = ["^", "*", "/", "%", "+", "-"];
+let currentExpression = "";
+let currentNumbers = "";
+
+const display = document.querySelector(".display-text");
+
+setUpUI();
+
+function setUpUI() {
+  document.querySelector(".clear").addEventListener("click", () => currentNumbers = "");
+  document.querySelector(".clear-exp").addEventListener("click", clearExpression);
+  document.querySelector(".decimal").addEventListener("click", decimalPress);
+  document.querySelector(".equal").addEventListener("click", equalPress)
+  
+  document.querySelectorAll(".number").forEach(node => node.addEventListener("click", numberPress));
+  document.querySelectorAll(".operator").forEach(node => node.addEventListener("click", operatorPress));
+  document.querySelectorAll("button").forEach(node => node.addEventListener("click", updateDisplay));
+}
+
+function clearExpression() {
+  currentNumbers = "";
+  currentExpression = "";
+}
+
+function updateDisplay() {
+  display.textContent = currentNumbers;
+}
+
+function numberPress(e) {
+  const number = e.target.textContent;
+  currentNumbers += number;
+  currentNumbers = currentNumbers.replace(/^0+/, "");
+}
+
+function operatorPress(e) {
+  if (/\d/.test(currentNumbers)) {
+    const operator = e.target.textContent;
+    currentExpression += currentNumbers + operator;
+    currentNumbers = "";
+  }
+}
+
+function decimalPress() {
+  currentNumbers = currentNumbers.replace(".", "");
+  currentNumbers += ".";
+}
+
+function equalPress() {
+  currentExpression += /\d/.test(currentNumbers) ? currentNumbers : "0";
+  currentNumbers = Math.abs(+evaluateExpression(currentExpression)).toString();
+  currentExpression = "";
+}
 
 function evaluateExpression(expression) {
   for (let i = 0; i < ORDER.length; i++) {
@@ -7,7 +58,7 @@ function evaluateExpression(expression) {
     let match = expression.match(regex);
 
     while (match) {
-      expression = expression.replace(match[0], runOperation(...match[0].split(operator).map(e => +e), operator));
+      expression = expression.replace(match[0], runOperation(...match[0].split(operator).map(x => +x), operator));
       match = expression.match(regex);
     }
   }
