@@ -10,7 +10,7 @@ function setUpUI() {
   document.querySelector(".clear").addEventListener("click", () => currentNumbers = "");
   document.querySelector(".clear-exp").addEventListener("click", clearExpression);
   document.querySelector(".decimal").addEventListener("click", decimalPress);
-  document.querySelector(".equal").addEventListener("click", equalPress)
+  document.querySelector(".equal").addEventListener("click", equalPress);
   
   document.querySelectorAll(".number").forEach(node => node.addEventListener("click", numberPress));
   document.querySelectorAll(".operator").forEach(node => node.addEventListener("click", operatorPress));
